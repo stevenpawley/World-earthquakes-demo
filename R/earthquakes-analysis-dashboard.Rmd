@@ -1,0 +1,113 @@
+---
+title: "World Earthquakes"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    theme:
+      version: 4
+      bootswatch: cerulean
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+```
+
+```{r libraries, include=FALSE}
+library(tidyverse)
+library(plotly)
+library(flexdashboard)
+library(shiny)
+```
+
+```{r, include=FALSE}
+quakes = read_csv('https://raw.githubusercontent.com/plotly/datasets/master/earthquakes-23k.csv')
+
+quakes = quakes |> 
+  mutate(
+    Date = parse_date_time(Date, orders = "%m/%d/%Y"),
+    Year = year(Date)
+  )
+```
+
+Geospatial Analysis {.sidebar}
+-----------------------------------------------------------------------
+
+```{r}
+shiny::sliderInput("year_range", label = h3("Years"), min = 1965, max = 2016,
+                   value = c(1965, 2016))
+```
+
+```{r}
+yearly = reactive({
+  quakes |> 
+    filter(Year >= input$year_range[1], Year <= input$year_range[2])
+})
+```
+
+Row
+-----------------------------------------------------------------------
+
+### Map view
+
+```{r}
+plotlyOutput("map", height = "100%")
+
+output$map = renderPlotly({
+  yearly() |> 
+    plot_ly(
+      type = 'densitymapbox',
+      lat = ~ Latitude,
+      lon = ~ Longitude,
+      coloraxis = 'coloraxis',
+      radius = 5
+    ) |> 
+  layout(
+    mapbox = list(
+      style = "stamen-terrain",
+      center = list(lon = 180)), coloraxis = list(colorscale = "Viridis")
+    )
+})
+```
+
+Row {.tabset}
+-----------------------------------------------------------------------
+
+### Earthquakes vs. date
+
+```{r}
+renderPlotly({
+  yearly() |>
+    group_by(Year) |> 
+    summarize(n = n()) |> 
+    plotly::plot_ly(type = "bar", x = ~ Year, y = ~ n)
+})
+```
+
+
+### Earthquakes vs. magnitude
+
+```{r}
+yearly_mag = reactive({
+  quakes |> 
+    filter(Year >= input$year_range[1], Year <= input$year_range[2]) |> 
+    group_by(Year = year(Date), Magnitude = cut_width(Magnitude, 1)) |> 
+    summarize(n = n())
+})
+
+renderPlotly({
+  yearly_mag() |> 
+  plot_ly(
+    type = "scatter",
+    x = ~ Year,
+    y = ~ n,
+    color = ~ Magnitude,
+    mode = "markers"
+  )
+})
+```
+

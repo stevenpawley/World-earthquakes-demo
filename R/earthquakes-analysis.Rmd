@@ -1,0 +1,90 @@
+---
+title: "World Earthquakes"
+author: "Steven Pawley"
+date: "2023-06-01"
+output:
+  html_document:
+    theme: cerulean
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+```
+
+```{r}
+library(tidyverse)
+library(plotly)
+```
+
+## Download the data
+
+```{r}
+quakes = read_csv('https://raw.githubusercontent.com/plotly/datasets/master/earthquakes-23k.csv')
+
+quakes = quakes |> 
+  mutate(Date = parse_date_time(Date, orders = "%m/%d/%Y"))
+
+head(quakes)
+```
+
+## Inspect the DataFrame
+
+```{r}
+skimr::skim(quakes)
+```
+
+## Geospatial Analysis
+
+```{r}
+fig = quakes |>
+  plot_ly(
+    type = 'densitymapbox',
+    lat = ~ Latitude,
+    lon = ~ Longitude,
+    coloraxis = 'coloraxis',
+    radius = 5
+  ) 
+
+fig |>
+  layout(
+    mapbox = list(
+      style = "stamen-terrain",
+      center = list(lon = 180)), coloraxis = list(colorscale = "Viridis")
+    )
+```
+
+## Examine temporal patterns
+
+Plotting the number of earthquakes by year indicates that earthquakes are becoming more frequent:
+
+```{r}
+yearly = quakes |>
+    group_by(Year = year(Date)) |>
+    summarize(n = n())
+
+yearly |>
+  plotly::plot_ly(type = "bar",
+                  x = ~ Year,
+                  y = ~ n)
+```
+
+This is maybe unexpected. To look into the data more, we can also plot by time and magnitude. This shows that the number of large magnitude events stays relatively constant through time, and the apparent increase entirely comes from smaller magnitude events. This might suggest a detection bias.
+
+```{r}
+yearly_mag = quakes |> 
+  group_by(Year = year(Date), Magnitude = cut_width(Magnitude, 1)) |> 
+  summarize(n = n())
+
+yearly_mag |> 
+  plot_ly(
+    type = "scatter",
+    x = ~ Year,
+    y = ~ n,
+    color = ~ Magnitude,
+    mode = "markers"
+  )
+```

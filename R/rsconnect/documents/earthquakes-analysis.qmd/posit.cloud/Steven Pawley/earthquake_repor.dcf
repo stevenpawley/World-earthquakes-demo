@@ -1,0 +1,15 @@
+name: earthquake_repor
+title: Earthquake Report
+username:
+account: Steven Pawley
+server: posit.cloud
+hostUrl: https://api.shinyapps.io/v1
+appId: 9227069
+bundleId: 7290089
+url: https://posit.cloud/content/6048957
+when: 1685596380.81309
+lastSyncTime: 1685596380.8131
+quarto_version: 1.3.354
+quarto_engines: knitr
+asMultiple: FALSE
+asStatic: FALSE
