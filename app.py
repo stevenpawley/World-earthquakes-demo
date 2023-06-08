@@ -108,7 +108,7 @@ def server(input, output, session):
 
     @output
     @render.table
-    @reactive.event(input.cluster, ignore_none=False)
+    @reactive.event(input.cluster, ignore_none=True, ignore_init=True)
     def clustertbl():
         cl = DBSCAN()
         df = filtered()
