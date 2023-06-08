@@ -1,5 +1,3 @@
-SparkR::sparkR.session()
-
 library(sparklyr)
 library(tidyverse)
 library(lubridate)
