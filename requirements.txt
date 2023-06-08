@@ -1,0 +1,6 @@
+shiny
+shinywidgets
+shinyswatch
+pandas
+plotly
+scikit-learn
