@@ -4,3 +4,4 @@ shinyswatch
 pandas
 plotly
 scikit-learn
+Jinja2
