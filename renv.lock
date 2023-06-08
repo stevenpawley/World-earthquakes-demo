@@ -92,6 +92,16 @@
       ],
       "Hash": "e8a22846fff485f0be3770c2da758713"
     },
+    "assertthat": {
+      "Package": "assertthat",
+      "Version": "0.2.1",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "tools"
+      ],
+      "Hash": "50c838a310445e954bc13f26f26a6ecf"
+    },
     "backports": {
       "Package": "backports",
       "Version": "1.4.1",
@@ -246,6 +256,16 @@
       ],
       "Hash": "3f038e5ac7f41d4ac41ce658c85e3042"
     },
+    "codetools": {
+      "Package": "codetools",
+      "Version": "0.2-19",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "c089a619a7fae175d149d89164f8c7d8"
+    },
     "colorspace": {
       "Package": "colorspace",
       "Version": "2.1-0",
@@ -266,6 +286,16 @@
       "Source": "Repository",
       "Repository": "RSPM",
       "Hash": "d691c61bff84bd63c383874d2d0c3307"
+    },
+    "config": {
+      "Package": "config",
+      "Version": "0.3.1",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "yaml"
+      ],
+      "Hash": "31d77b09f63550cee9ecb5a08bf76e8f"
     },
     "conflicted": {
       "Package": "conflicted",
@@ -512,6 +542,18 @@
       ],
       "Hash": "1a0a9a3d5083d0d573c4214576f1e690"
     },
+    "forge": {
+      "Package": "forge",
+      "Version": "0.2.0",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "R",
+        "magrittr",
+        "rlang"
+      ],
+      "Hash": "b98a63142d3aa952bb551968fea8a56c"
+    },
     "fs": {
       "Package": "fs",
       "Version": "1.6.2",
@@ -580,6 +622,17 @@
         "withr"
       ],
       "Hash": "3a147ee02e85a8941aad9909f1b43b7b"
+    },
+    "globals": {
+      "Package": "globals",
+      "Version": "0.16.2",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "R",
+        "codetools"
+      ],
+      "Hash": "baa9585ab4ce47a9f4618e671778cc6f"
     },
     "glue": {
       "Package": "glue",
@@ -1041,7 +1094,7 @@
     },
     "plotly": {
       "Package": "plotly",
-      "Version": "4.10.1",
+      "Version": "4.10.2",
       "Source": "Repository",
       "Repository": "RSPM",
       "Requirements": [
@@ -1069,7 +1122,7 @@
         "vctrs",
         "viridisLite"
       ],
-      "Hash": "3781cf6971c6467fa842a63725bbee9e"
+      "Hash": "6c00a09ba7d34917d9a3e28b15dd74e3"
     },
     "prettyunits": {
       "Package": "prettyunits",
@@ -1144,6 +1197,20 @@
         "vctrs"
       ],
       "Hash": "d71c815267c640f17ddbf7f16144b4bb"
+    },
+    "r2d3": {
+      "Package": "r2d3",
+      "Version": "0.2.6",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "R",
+        "htmltools",
+        "htmlwidgets",
+        "jsonlite",
+        "rstudioapi"
+      ],
+      "Hash": "86e5144cf31e5e102b2f75be50176248"
     },
     "ragg": {
       "Package": "ragg",
@@ -1304,6 +1371,16 @@
       ],
       "Hash": "75a01be060d800ceb14e32c666cacac9"
     },
+    "rprojroot": {
+      "Package": "rprojroot",
+      "Version": "2.0.3",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "1de7ab598047a87bba48434ba35d497d"
+    },
     "rsconnect": {
       "Package": "rsconnect",
       "Version": "0.8.29",
@@ -1461,6 +1538,45 @@
         "R"
       ],
       "Hash": "5f5a7629f956619d519205ec475fe647"
+    },
+    "sparklyr": {
+      "Package": "sparklyr",
+      "Version": "1.8.1",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "DBI",
+        "R",
+        "assertthat",
+        "base64enc",
+        "config",
+        "dbplyr",
+        "digest",
+        "dplyr",
+        "ellipsis",
+        "forge",
+        "generics",
+        "globals",
+        "glue",
+        "httr",
+        "jsonlite",
+        "methods",
+        "openssl",
+        "purrr",
+        "r2d3",
+        "rappdirs",
+        "rlang",
+        "rprojroot",
+        "rstudioapi",
+        "tibble",
+        "tidyr",
+        "tidyselect",
+        "uuid",
+        "vctrs",
+        "withr",
+        "xml2"
+      ],
+      "Hash": "2aef5e5efe924e81a3121d3474692e23"
     },
     "stringi": {
       "Package": "stringi",
